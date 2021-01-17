@@ -24,13 +24,13 @@ public class TestMatcher<T> {
     }
 
     public static <T> TestMatcher<T> usingEqualsComparator(Class<T> clazz) {
-        return new TestMatcher<>(clazz,
+        return usingAssertions(clazz,
                 (a, e) -> assertThat(a).isEqualTo(e),
                 (a, e) -> assertThat(a).isEqualTo(e));
     }
 
     public static <T> TestMatcher<T> usingIgnoringFieldsComparator(Class<T> clazz, String... fieldsToIgnore) {
-        return new TestMatcher<>(clazz,
+        return usingAssertions(clazz,
                 (a, e) -> assertThat(a).usingRecursiveComparison().ignoringFields(fieldsToIgnore).isEqualTo(e),
                 (a, e) -> assertThat(a).usingElementComparatorIgnoringFields(fieldsToIgnore).isEqualTo(e));
     }
